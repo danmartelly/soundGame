@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 		float vertical = Input.GetAxis ("Vertical");
 		Rigidbody2D rb2d = gameObject.GetComponent<Rigidbody2D> ();
 		rb2d.AddForce(new Vector2(horizontal*10, vertical*10));
-		if (Input.GetKeyUp("space")) {
+		if (Input.GetKeyUp("e")) {
 			// ring appears
 			soundCircle.gameObject.SetActive(true);
 			soundCircle.transform.position = transform.position;
