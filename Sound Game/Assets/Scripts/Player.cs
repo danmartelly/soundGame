@@ -23,13 +23,19 @@ public class Player : MonoBehaviour {
 	public LayerMask collisionLayer; 
 	private float epsilon = 0.005f; 
 	public bool grounded; 
-
+	public SoundCircle soundCircle;
 
 	// Use this for initialization
 	void Start () {
 		collider = GetComponent<BoxCollider> (); 
 		colliderSize = collider.size;
 		colliderCenter = collider.center; 
+	}
+	
+
+	// Use this for initialization
+	void Awake () {
+		//soundCircle.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -41,7 +47,6 @@ public class Player : MonoBehaviour {
 			amountToMove.y = 0; 
 
 			if (Input.GetButtonDown ("Jump")) {
-				Debug.Log("hel");
 				amountToMove.y = jumpHeight; 
 			}
 		}
@@ -49,6 +54,19 @@ public class Player : MonoBehaviour {
 		amountToMove.x = currentSpeed;
 		amountToMove.y -= gravity * Time.deltaTime; 
 		IncrementMovement (amountToMove * Time.deltaTime);
+
+
+		float horizontal = Input.GetAxis ("Horizontal");
+		float vertical = Input.GetAxis ("Vertical");
+		Rigidbody2D rb2d = gameObject.GetComponent<Rigidbody2D> ();
+		rb2d.AddForce(new Vector2(horizontal*10, vertical*10));
+		if (Input.GetKeyUp ("e")) {
+			// ring appears
+			soundCircle.gameObject.SetActive (true);
+			soundCircle.transform.position = transform.position;
+			soundCircle.transform.localScale = new Vector3 (.2F, .2F, .2F);
+			Debug.Log ("player space");
+		}
 	}
 
 	private float AccelerateTowards(float currentSpeed, float targetSpeed, float acceleration) 
@@ -93,5 +111,6 @@ public class Player : MonoBehaviour {
 
 		Vector2 newMoveAmount = new Vector2(moveAmount.x, dy); 
 		transform.Translate (newMoveAmount);
+
 	}
 }
