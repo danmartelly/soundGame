@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e9eb25190336998419aa467d42b581a0
+timeCreated: 1434752635
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - wavePrefab: {fileID: 159792, guid: 9f2fb04581823cc47bbab65899a7e646, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
